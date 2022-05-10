@@ -5,18 +5,23 @@ const ListContacts = (props) => {
     const {contacts, handleDelete} = props
     const [input, setInput] = useState("")
 
-    const showContacts = input === "" ? contacts : contacts.filter(contact => contact.name.includes(input))
+    const showContacts = input === "" ? contacts : contacts.filter(contact => contact.name.toLowerCase().includes(input))
 
-    console.log(showContacts)
     return (
         <div className='list-contacts'>
             <input 
-                name="input" 
+                name="input"
+                className='search-contacts'
                 value={input} 
                 type="text" 
                 placeholder='Search Contacts'
                 onChange={(e) => setInput(e.target.value.trim())}
             />
+            {input ? 
+                <div className='showing-contacts'>
+                    Show {showContacts.length} of {contacts.length} contacts. 
+                    <button onClick={() => setInput("")}>Show all</button>
+                </div> : null}
             <ol className='contact-list'>
                 {showContacts.map(contact => {
                     return(
