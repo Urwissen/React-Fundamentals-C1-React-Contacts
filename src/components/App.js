@@ -3,6 +3,7 @@ import "../css/App.css";
 import ListContacts from "./ListContacts";
 import CreateContact from "./CreateContact";
 import * as ContactsAPI from "../utils/ContactsAPI";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
   const [contacts, setContacts] = useState(
@@ -34,11 +35,14 @@ const App = () => {
     setContacts(prev => prev.filter(c => c.id !== contact.id))
   }
 
-  return (<div>
+  return (
+    <Routes>
+      <Route exact path="/" element={<ListContacts contacts={contacts} handleDelete={handleDelete}/>  }/>
+      <Route path="/create" element={<CreateContact />}/>
+    </Routes>
     
-    <ListContacts contacts={contacts} handleDelete={handleDelete}/>  
-    <CreateContact />
-  </div>);
+
+  );
 };
 
 export default App;

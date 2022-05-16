@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import PropTypes from "prop-types"
+import { Link } from 'react-router-dom'
 
 const ListContacts = (props) => {
     const {contacts, handleDelete} = props
@@ -9,17 +10,19 @@ const ListContacts = (props) => {
 
     return (
         <div className='list-contacts'>
-            <input 
-                name="input"
-                className='search-contacts'
-                value={input} 
-                type="text" 
-                placeholder='Search Contacts'
-                onChange={(e) => setInput(e.target.value.trim())}
-            />
-            <a href="#create" onClick={() => {}} className='add-contact'>
-                Add contact
-            </a>
+            <div className='list-contacts-top'>
+                <input 
+                    name="input"
+                    className='search-contacts'
+                    value={input} 
+                    type="text" 
+                    placeholder='Search Contacts'
+                    onChange={(e) => setInput(e.target.value.trim())}
+                />
+                <Link to="/create" className='add-contact'>
+                    Add contact
+                </Link>
+            </div>
             {input ? 
                 <div className='showing-contacts'>
                     Show {showContacts.length} of {contacts.length} contacts. 
