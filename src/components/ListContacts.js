@@ -17,6 +17,9 @@ const ListContacts = (props) => {
                 placeholder='Search Contacts'
                 onChange={(e) => setInput(e.target.value.trim())}
             />
+            <a href="#create" onClick={() => {}} className='add-contact'>
+                Add contact
+            </a>
             {input ? 
                 <div className='showing-contacts'>
                     Show {showContacts.length} of {contacts.length} contacts. 
@@ -35,7 +38,7 @@ const ListContacts = (props) => {
                                 <p><strong>{contact.name}</strong></p>
                                 <p><em>{contact.handle}</em></p>
                             </div>
-                            <button className='contact-remove' onClick={() => handleDelete(contact.id)}>Remove</button>
+                            <button className='contact-remove' onClick={() => handleDelete(contact)}>Remove</button>
                         </li>
                     )
                 })}
